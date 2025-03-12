@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../ultils/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const AuthContext = createContext();
 
@@ -18,8 +18,17 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+    const logout = async () => {
+      try {
+        await signOut(auth);
+        console.log("Usuário deslogado!");
+      } catch (error) {
+        console.error("Erro ao sair:", error);
+      }
+    };
+
   return (
-    <AuthContext.Provider value={{ user, loading }}>
+    <AuthContext.Provider value={{ user, loading, logout }}>
       {children}
     </AuthContext.Provider>
   );
