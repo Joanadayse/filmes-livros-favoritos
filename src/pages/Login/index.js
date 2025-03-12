@@ -17,7 +17,7 @@ const handleGoogleLogin = async () => {
   return (
     <div className="container">
       <div className="mask"></div>
-      <h1 className="titulo">Meus filmes e livros favoritos</h1>
+      <h1 className="titulo">Meus filmes & livros favoritos</h1>
       <div className="div-button">
         <button
           onClick={handleGoogleLogin}
